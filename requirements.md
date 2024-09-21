@@ -15,15 +15,11 @@ The Todo App is designed to help users manage their tasks efficiently. It provid
    - Allow users to create multiple lists to categorize tasks (e.g., Work, Personal, Shopping).
    - Provide the ability to move tasks between lists.
 
-3. **User Authentication**
-   - Implement secure user registration and login functionality.
-   - Allow users to reset their passwords if forgotten.
-
-4. **Data Synchronization**
+3. **Data Synchronization**
    - Sync user data across multiple devices in real-time.
    - Ensure data persistence even when offline.
 
-5. **Search and Filter**
+4. **Search and Filter**
    - Implement a search function to find specific tasks quickly.
    - Allow filtering of tasks based on due date, priority, or completion status.
 
@@ -51,7 +47,6 @@ The Todo App is designed to help users manage their tasks efficiently. It provid
 1. As a user, I want to quickly add a new task so that I can capture my to-dos without interrupting my workflow.
 2. As a user, I want to set due dates for my tasks so that I can prioritize and manage my time effectively.
 3. As a user, I want to create different lists for various aspects of my life so that I can keep my tasks organized.
-4. As a user, I want to access my tasks on multiple devices so that I can stay updated wherever I am.
 
 ## Conclusion
 This document outlines the requirements for the Todo App, focusing on functionality, performance, and user experience. The goal is to create a reliable, efficient, and user-friendly tool that helps users manage their tasks effectively across various aspects of their lives.
