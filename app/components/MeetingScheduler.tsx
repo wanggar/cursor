@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
 
 // MeetingScheduler component for scheduling AI-attended meetings
 const MeetingScheduler: React.FC = () => {
@@ -11,73 +14,61 @@ const MeetingScheduler: React.FC = () => {
   });
 
   // Handle input changes
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
+  const handleInputChange = (name: string, value: string) => {
     setMeetingDetails(prev => ({ ...prev, [name]: value }));
   };
 
   // Handle form submission
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement API call to schedule meeting
     console.log('Scheduling meeting:', meetingDetails);
-    // Reset form after submission
     setMeetingDetails({ title: '', date: '', time: '', platform: '', link: '' });
   };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <input
+      <Input
         type="text"
-        name="title"
         value={meetingDetails.title}
-        onChange={handleInputChange}
+        onChange={(e) => handleInputChange('title', e.target.value)}
         placeholder="Meeting Title"
-        className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         required
+        className="rounded-md"
       />
       <div className="grid grid-cols-2 gap-4">
-        <input
+        <Input
           type="date"
-          name="date"
           value={meetingDetails.date}
-          onChange={handleInputChange}
-          className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          onChange={(e) => handleInputChange('date', e.target.value)}
           required
         />
-        <input
+        <Input
           type="time"
-          name="time"
           value={meetingDetails.time}
-          onChange={handleInputChange}
-          className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          onChange={(e) => handleInputChange('time', e.target.value)}
           required
         />
       </div>
-      <select
-        name="platform"
-        value={meetingDetails.platform}
-        onChange={handleInputChange}
-        className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        required
-      >
-        <option value="">Select Platform</option>
-        <option value="zoom">Zoom</option>
-        <option value="teams">Microsoft Teams</option>
-        <option value="meet">Google Meet</option>
-      </select>
-      <input
+      <Select onValueChange={(value) => handleInputChange('platform', value)}>
+        <SelectTrigger>
+          <SelectValue placeholder="Select Platform" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="zoom">Zoom</SelectItem>
+          <SelectItem value="teams">Microsoft Teams</SelectItem>
+          <SelectItem value="meet">Google Meet</SelectItem>
+        </SelectContent>
+      </Select>
+      <Input
         type="url"
-        name="link"
         value={meetingDetails.link}
-        onChange={handleInputChange}
+        onChange={(e) => handleInputChange('link', e.target.value)}
         placeholder="Meeting Link"
-        className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         required
       />
-      <button type="submit" className="w-full p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-300 ease-in-out">
+      <Button type="submit" className="w-full">
         Schedule AI Attendance
-      </button>
+      </Button>
     </form>
   );
 };

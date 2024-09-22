@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 
 // Dummy data for meeting summaries
 const meetingSummaries = [
@@ -13,34 +15,34 @@ const SummaryViewer: React.FC = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       <div className="md:col-span-1">
-        <ul className="space-y-2">
+        <div className="space-y-2">
           {meetingSummaries.map(summary => (
-            <li key={summary.id}>
-              <button
-                onClick={() => setSelectedSummary(summary.id)}
-                className={`w-full text-left p-2 rounded-md transition duration-300 ease-in-out ${
-                  selectedSummary === summary.id
-                    ? 'bg-blue-100 text-blue-800'
-                    : 'hover:bg-gray-100'
-                }`}
-              >
+            <Button
+              key={summary.id}
+              variant={selectedSummary === summary.id ? "secondary" : "ghost"} // Different appearance for selected/unselected
+              className={`w-full justify-start ${selectedSummary === summary.id ? 'bg-gray-200' : 'bg-white'}`} // Added background color for selected state
+              onClick={() => setSelectedSummary(summary.id)}
+            >
+              <div className="text-left">
                 <p className="font-medium">{summary.title}</p>
-                <p className="text-sm text-gray-600">{summary.date}</p>
-              </button>
-            </li>
+                <p className="text-sm text-muted-foreground">{summary.date}</p>
+              </div>
+            </Button>
           ))}
-        </ul>
+        </div>
       </div>
       <div className="md:col-span-2">
         {selectedSummary && (
-          <div className="p-4 border border-gray-200 rounded-md">
-            <h3 className="font-semibold text-lg mb-2">
-              {meetingSummaries.find(s => s.id === selectedSummary)?.title}
-            </h3>
-            <p className="text-gray-700">
-              {meetingSummaries.find(s => s.id === selectedSummary)?.summary}
-            </p>
-          </div>
+          <Card>
+            <CardContent className="p-4">
+              <h3 className="font-semibold text-lg mb-2">
+                {meetingSummaries.find(s => s.id === selectedSummary)?.title}
+              </h3>
+              <p className="text-muted-foreground">
+                {meetingSummaries.find(s => s.id === selectedSummary)?.summary}
+              </p>
+            </CardContent>
+          </Card>
         )}
       </div>
     </div>

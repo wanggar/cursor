@@ -1,4 +1,5 @@
 import React from 'react';
+import { Card, CardContent } from "@/components/ui/card";
 
 // Dummy data for upcoming meetings
 const upcomingMeetings = [
@@ -10,16 +11,19 @@ const upcomingMeetings = [
 // MeetingList component to display upcoming AI-attended meetings
 const MeetingList: React.FC = () => {
   return (
-    <ul className="space-y-4">
+    <div className="space-y-4">
       {upcomingMeetings.map(meeting => (
-        <li key={meeting.id} className="border p-4 rounded shadow">
-          <h3 className="font-semibold">{meeting.title}</h3>
-          <p>Date: {meeting.date}</p>
-          <p>Time: {meeting.time}</p>
-          <p>Platform: {meeting.platform}</p>
-        </li>
+        <Card key={meeting.id}>
+          <CardContent className="p-4">
+            <h3 className="font-semibold text-lg">{meeting.title}</h3>
+            <div className="mt-2 text-sm text-muted-foreground">
+              <p>{meeting.date} at {meeting.time}</p>
+              <p>Platform: {meeting.platform}</p>
+            </div>
+          </CardContent>
+        </Card>
       ))}
-    </ul>
+    </div>
   );
 };
 
