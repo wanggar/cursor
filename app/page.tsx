@@ -1,10 +1,9 @@
-import TodoApp from './components/TodoApp';
-import TodosApp from './components/todos';
+
 
 export default function Home() {
   return (
     <main>
-      <TodosApp />
+        <h1>AI Meeting Agent</h1>
     </main>
   );
 }
